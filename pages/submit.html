@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Manuscript - Shepherd Court Publishing</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e44ad;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #333;
+            --border-radius: 4px;
+            --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: #fff;
+            padding-top: 90px; /* Space for fixed header */
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--secondary);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--box-shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            margin-left: 10px;
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('./../images/S.C/library-with-books.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .page-banner h1 {
+            color: white;
+        }
+        
+        /* Submission Page Layout */
+        .submission-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .submission-content {
+            flex: 1;
+        }
+        
+        .submission-form {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        /* Guidelines */
+        .guidelines {
+            margin-bottom: 30px;
+        }
+        
+        .guidelines h3 {
+            margin-top: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .guidelines ul, .guidelines ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .guidelines li {
+            margin-bottom: 10px;
+        }
+        
+        .guidelines .note {
+            background: #f8f4e5;
+            padding: 15px;
+            border-left: 4px solid var(--secondary);
+            margin-top: 20px;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .file-upload-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .checkbox-group {
+            margin-top: 20px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .checkbox-label input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .form-footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .form-footer .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: #777;
+        }
+        
+        /* Process Section */
+        .process-section {
+            background: var(--light);
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .process-step {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .faq-item.active .faq-question:after {
+            content: "-";
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 1000px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #dff0d8;
+            color: #3c763d;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .submission-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/S.C/Sheperd court.jpg" alt="Shepherd Court Publishing Logo">
+                <h1>Shepherd Court Publishing</h1>
+            </div>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul id="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="submit.html">Submit</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Submit Your Manuscript</h1>
+            <p>Take the first step toward publishing your book with Shepherd Court</p>
+        </div>
+    </section>
+
+    <!-- Submission Content -->
+    <section class="submission-section">
+        <div class="container">
+            <div class="success-message" id="success-message">
+                <h3>Thank you for your submission!</h3>
+                <p>We've received your manuscript and will review it shortly. A member of our team will contact you within 3-5 business days to discuss next steps.</p>
+            </div>
+            
+            <div class="submission-container">
+                <!-- Guidelines -->
+                <div class="submission-content">
+                    <div class="guidelines">
+                        <h2>Manuscript Submission Guidelines</h2>
+                        <p>Thank you for considering Shepherd Court Publishing for your manuscript. We accept submissions across a wide range of genres and are committed to helping authors bring their vision to life.</p>
+                        
+                        <h3>What We're Looking For</h3>
+                        <p>We publish fiction and non-fiction works across various genres, including:</p>
+                        <ul>
+                            <li>Literary Fiction</li>
+                            <li>Mystery, Thriller & Suspense</li>
+                            <li>Science Fiction & Fantasy</li>
+                            <li>Historical Fiction</li>
+                            <li>Memoirs & Biographies</li>
+                            <li>Self-Help & Personal Development</li>
+                            <li>Business & Professional</li>
+                            <li>Academic & Educational</li>
+                        </ul>
+                        
+                        <h3>Manuscript Requirements</h3>
+                        <ol>
+                            <li>Manuscripts should be submitted as a Microsoft Word (.docx) or PDF file.</li>
+                            <li>Please use a standard font (Times New Roman or Arial) in 12-point size.</li>
+                            <li>Double-spaced with 1-inch margins on all sides.</li>
+                            <li>Include page numbers in the footer.</li>
+                            <li>For fiction: Complete manuscripts only (no partial submissions).</li>
+                            <li>For non-fiction: Complete manuscripts or detailed proposals with sample chapters.</li>
+                        </ol>
+                        
+                        <h3>What Happens Next</h3>
+                        <p>After receiving your submission, our editorial team will review your manuscript and determine if it's a good fit for our publishing program. This initial review typically takes 3-5 business days, after which you'll receive a response from our acquisitions team.</p>
+                        
+                        <div class="note">
+                            <p><strong>Note:</strong> Due to the high volume of submissions we receive, we may not be able to provide detailed feedback on every manuscript. If your manuscript is not selected, it doesn't necessarily reflect on its quality or merit.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Submission Form -->
+                <div class="submission-form">
+                    <h2>Manuscript Submission Form</h2>
+                    <form id="manuscript-form">
+                        <!-- Personal Information -->
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <!-- Manuscript Information -->
+                        <div class="form-group">
+                            <label for="title">Manuscript Title *</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Genre *</label>
+                            <select id="genre" name="genre" required>
+                                <option value="">Select a genre</option>
+                                <option value="literary-fiction">Literary Fiction</option>
+                                <option value="mystery-thriller">Mystery, Thriller & Suspense</option>
+                                <option value="sci-fi-fantasy">Science Fiction & Fantasy</option>
+                                <option value="historical-fiction">Historical Fiction</option>
+                                <option value="memoir-biography">Memoir & Biography</option>
+                                <option value="self-help">Self-Help & Personal Development</option>
+                                <option value="business">Business & Professional</option>
+                                <option value="academic">Academic & Educational</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="word-count">Word Count *</label>
+                            <input type="text" id="word-count" name="wordCount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="synopsis">Brief Synopsis/Description *</label>
+                            <textarea id="synopsis" name="synopsis" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="author-bio">Author Bio</label>
+                            <textarea id="author-bio" name="authorBio"></textarea>
+                        </div>
+                        
+                        <!-- File Upload -->
+                        <div class="form-group">
+                            <label>Upload Manuscript (PDF or DOCX) *</label>
+                            <div class="file-upload">
+                                <span class="file-upload-btn">Choose File</span>
+                                <input type="file" id="manuscript-file" name="manuscriptFile" accept=".pdf,.docx" required>
+                                <span class="file-name" id="file-name-display">No file chosen</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Notes -->
+                        <div class="form-group">
+                            <label for="additional-notes">Additional Notes or Comments</label>
+                            <textarea id="additional-notes" name="additionalNotes"></textarea>
+                        </div>
+                        
+                        <!-- Agreements -->
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="agreement" required>
+                                I confirm that this is my original work and I have the rights to submit it for publication consideration.
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="newsletter">
+                                I would like to receive the Shepherd Court Publishing newsletter and updates about publishing services.
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="form-footer">
+                            <button type="submit" class="btn">Submit Manuscript</button>
+                            <p class="form-note">* Required fields</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission Process -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Submission Process</h2>
+                <p>What happens after you submit your manuscript</p>
+            </div>
+            <div class="process-steps">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Initial Review</h3>
+                    <p>Our editorial team conducts an initial review of your manuscript to assess its fit with our publishing program (3-5 business days).</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Comprehensive Evaluation</h3>
+                    <p>If your submission passes the initial review, it undergoes a more thorough evaluation by our acquisitions editors (2-3 weeks).</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Decision & Proposal</h3>
+                    <p>Based on the evaluation, we'll either offer a publishing agreement or provide feedback on why we cannot proceed at this time.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Contract & Publishing</h3>
+                    <p>If accepted, we'll work with you to develop a publishing plan, sign a contract, and begin the editing and production process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about our submission process</p>
+            </div>
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">Do I need to have a completed manuscript to submit?</div>
+                    <div class="faq-answer">
+                        <p>For fiction, we require a complete manuscript. For non-fiction, we accept detailed proposals with sample chapters that demonstrate your writing style and the book's content.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">Is there a fee to submit my manuscript?</div>
+                    <div class="faq-answer">
+                        <p>No, there is no fee to submit your manuscript for consideration. We only charge fees for our publishing services if we decide to move forward with your project and you choose to work with us.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">How long does the review process take?</div>
+                    <div class="faq-answer">
+                        <p>The initial review typically takes 3-5 business days. If your manuscript proceeds to the comprehensive evaluation stage, that process usually takes 2-3 weeks. We strive to provide timely responses to all submissions.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">Can I submit my manuscript if it's been previously rejected by other publishers?</div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. Every publisher has different criteria and preferences. We evaluate each manuscript on its own merits, regardless of its submission history with other publishers.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">What if I want to make changes to my manuscript after submitting it?</div>
+                    <div class="faq-answer">
+                        <p>If you need to make significant changes to your manuscript after submission, please email us at submissions@shepherdcourt.com with your name and manuscript title. We can then update your submission or discuss the best path forward.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>Shepherd Court</h3>
+                    <p>Dedicated to publishing excellence since 2010, helping authors bring their vision to readers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="books.html">Books & Publications</a></li>
+                        <li><a href="services.html">Publishing Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="submit.html">Submit Manuscript</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#packages">Publishing Packages</a></li>
+                        <li><a href="services.html#editing">Editing & Proofreading</a></li>
+                        <li><a href="services.html#design">Cover Design</a></li>
+                        <li><a href="services.html#distribution">Distribution</a></li>
+                        <li><a href="services.html#isbn">ISBN Registration</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>123 Publishing Lane<br>
+                    Bookville, NY 10001<br>
+                    info@shepherdcourt.com<br>
+                    (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shepherd Court Publishing. All rights reserved Developed by Yubbie.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.getElementById('main-menu').classList.toggle('active');
+        });
+        
+        // File upload display
+        document.getElementById('manuscript-file').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.getElementById('file-name-display').textContent = this.files[0].name;
+            } else {
+                document.getElementById('file-name-display').textContent = 'No file chosen';
+            }
+        });
+        
+        // Form submission
+        document.getElementById('manuscript-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would handle the form submission with AJAX
+            // For demo purposes, we'll just show the success message
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('manuscript-form').style.display = 'none';
+            
+            // Scroll to the success message
+            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', function() {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle the clicked item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

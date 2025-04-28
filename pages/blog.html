@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Resources - Shepherd Court Publishing</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e44ad;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #333;
+            --border-radius: 4px;
+            --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: #fff;
+            padding-top: 90px; /* Space for fixed header */
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--secondary);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--box-shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            margin-left: 10px;
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('./../images/S.C/library-with-books.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .page-banner h1 {
+            color: white;
+        }
+        
+        /* Blog Layout */
+        .blog-layout {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .blog-main {
+            flex: 2;
+        }
+        
+        .blog-sidebar {
+            flex: 1;
+        }
+        
+        /* Blog Filters */
+        .blog-filters {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .filter-tag:hover, .filter-tag.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Blog Articles */
+        .blog-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .article-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+        
+        .article-content {
+            padding: 20px;
+        }
+        
+        .article-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .article-tag.writing {
+            background: var(--secondary);
+        }
+        
+        .article-tag.industry {
+            background: #27ae60;
+        }
+        
+        .article-tag.marketing {
+            background: #f39c12;
+        }
+        
+        .article-date {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .article-excerpt {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Featured Post */
+        .featured-post {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .featured-image {
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 30px;
+        }
+        
+        .featured-label {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .featured-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #777;
+        }
+        
+        .featured-author {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .featured-author img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        /* Sidebar Widgets */
+        .sidebar-widget {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .widget-title:after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .recent-posts-list {
+            list-style: none;
+        }
+        
+        .recent-posts-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-posts-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .recent-post-date {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 10px;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            transition: all 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .category-count {
+            background: var(--light);
+            color: var(--dark);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            width: 100%;
+        }
+        
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag-cloud a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .tag-cloud a:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .pagination a.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        /* Resource Categories */
+        .resource-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .resource-category {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .resource-category:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            background: var(--primary);
+            color: white;
+        }
+        
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin-top: 40px;
+        }
+        
+        .cta-section h2 {
+            color: white;
+        }
+        
+        .cta-section h2:after {
+            background: var(--accent);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .blog-layout {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-articles {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/S.C/Sheperd court.jpg" alt="Shepherd Court Publishing Logo">
+                <h1>Shepherd Court Publishing</h1>
+            </div>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul id="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="submit.html">Submit</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Blog & Resources</h1>
+            <p>Insights, tips, and guides for authors and readers</p>
+        </div>
+    </section>
+
+    <!-- Resource Categories -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Resource Hub</h2>
+                <p>Explore our collection of helpful resources for authors</p>
+            </div>
+            
+            <div class="resource-categories">
+                <!-- Category 1 -->
+                <div class="resource-category">
+                    <div class="category-icon">✍️</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Writing Tips</h3>
+                        <p>Advice on crafting compelling narratives, developing characters, and refining your writing style.</p>
+                        <a href="#" class="btn btn-outline btn-small">Explore</a>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="resource-category">
+                    <div class="category-icon">📚</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Publishing Guides</h3>
+                        <p>Step-by-step guides to navigate the publishing process, from manuscript to market.</p>
+                        <a href="#" class="btn btn-outline btn-small">Explore</a>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="resource-category">
+                    <div class="category-icon">📣</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Marketing Strategies</h3>
+                        <p>Effective techniques to promote your book and build your author platform.</p>
+                        <a href="#" class="btn btn-outline btn-small">Explore</a>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="resource-category">
+                    <div class="category-icon">💼</div>
+                    <div class="category-content">
+                        <h3 class="category-title">Industry Insights</h3>
+                        <p>Analysis and news about trends and developments in the publishing industry.</p>
+                        <a href="#" class="btn btn-outline btn-small">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+                <p>Insights and advice from our publishing experts</p>
+            </div>
+            
+            <div class="blog-filters">
+                <div class="filter-group">
+                    <span class="filter-title">Filter by Category:</span>
+                    <div class="filter-options">
+                        <span class="filter-tag active">All</span>
+                        <span class="filter-tag">Writing Tips</span>
+                        <span class="filter-tag">Publishing</span>
+                        <span class="filter-tag">Marketing</span>
+                        <span class="filter-tag">Industry News</span>
+                        <span class="filter-tag">Author Interviews</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-layout">
+                <div class="blog-main">
+                    <!-- Featured Post -->
+                    <div class="featured-post">
+                        <div class="featured-image">
+                            <img src="../images/S.C/black-yellow-hardback-book.jpg" alt="Featured Post Image">
+                        </div>
+                        <div class="featured-content">
+                            <span class="featured-label">Featured Article</span>
+                            <h2 class="featured-title">5 Essential Steps to Prepare Your Manuscript for Publication</h2>
+                            <div class="featured-meta">
+                                <div class="featured-author">
+                                    <img src="../images/S.C/SC 4.JPG" alt="Author Avatar">
+                                    <span>By Michael Court</span>
+                                </div>
+                                <div class="featured-date">April 15, 2025</div>
+                            </div>
+                            <p>Preparing your manuscript for publication involves more than just completing your draft. From thorough editing to formatting considerations, these essential steps will help ensure your manuscript is ready for the professional publishing process.</p>
+                            <a href="blog-post.html" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Articles Grid -->
+                    <div class="blog-articles">
+                        <!-- Article 1 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="/images/S.C/SC 2.JPG" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag writing">Writing Tips</span>
+                                <h3 class="article-title">Creating Compelling Characters Your Readers Will Remember</h3>
+                                <p class="article-date">April 10, 2025</p>
+                                <p class="article-excerpt">Learn techniques for developing multi-dimensional characters that resonate with readers and drive your narrative forward.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 2 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="../images/S.C/red-hardcover-book-front-cover.jpg" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag">Publishing</span>
+                                <h3 class="article-title">Understanding Book Contracts: What Authors Need to Know</h3>
+                                <p class="article-date">April 5, 2025</p>
+                                <p class="article-excerpt">Navigate the complex world of publishing contracts with this comprehensive guide to terms, rights, and negotiation strategies.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 3 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="../images/S.C/SC 2.JPG" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag marketing">Marketing</span>
+                                <h3 class="article-title">Building Your Author Platform on Social Media</h3>
+                                <p class="article-date">March 28, 2025</p>
+                                <p class="article-excerpt">Discover effective strategies for establishing your author brand and connecting with readers across various social media platforms.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 4 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="/api/placeholder/400/200" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag industry">Industry News</span>
+                                <h3 class="article-title">The Rise of Audiobooks: What This Means for Authors</h3>
+                                <p class="article-date">March 20, 2025</p>
+                                <p class="article-excerpt">Explore the growing audiobook market and learn how authors can adapt their work for this increasingly popular format.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 5 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="/api/placeholder/400/200" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag writing">Writing Tips</span>
+                                <h3 class="article-title">Overcoming Writer's Block: Practical Techniques for Getting Unstuck</h3>
+                                <p class="article-date">March 15, 2025</p>
+                                <p class="article-excerpt">Break through creative roadblocks with these proven strategies from successful authors and writing coaches.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 6 -->
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="/api/placeholder/400/200" alt="Article Image">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag">Publishing</span>
+                                <h3 class="article-title">Self-Publishing vs. Traditional Publishing: Making the Right Choice</h3>
+                                <p class="article-date">March 8, 2025</p>
+                                <p class="article-excerpt">Compare the pros and cons of different publishing paths to determine which approach aligns best with your goals and circumstances.</p>
+                                <a href="blog-post.html" class="btn btn-outline btn-small">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">»</a>
+                    </div>
+                </div>
+                
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar">
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Search</h3>
+                        <form class="search-form">
+                            <input type="text" placeholder="Search articles...">
+                            <button type="submit" class="btn">Search</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Recent Posts</h3>
+                        <ul class="recent-posts-list">
+                            <li>
+                                <a href="blog-post.html" class="recent-post-title">5 Essential Steps to Prepare Your Manuscript for Publication</a>
+                                <div class="recent-post-date">April 15, 2025</div>
+                            </li>
+                            <li>
+                                <a href="blog-post.html" class="recent-post-title">Creating Compelling Characters Your Readers Will Remember</a>
+                                <div class="recent-post-date">April 10, 2025</div>
+                            </li>
+                            <li>
+                                <a href="blog-post.html" class="recent-post-title">Understanding Book Contracts: What Authors Need to Know</a>
+                                <div class="recent-post-date">April 5, 2025</div>
+                            </li>
+                            <li>
+                                <a href="blog-post.html" class="recent-post-title">Building Your Author Platform on Social Media</a>
+                                <div class="recent-post-date">March 28, 2025</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">Writing Tips <span class="category-count">12</span></a></li>
+                            <li><a href="#">Publishing <span class="category-count">9</span></a></li>
+                            <li><a href="#">Marketing <span class="category-count">7</span></a></li>
+                            <li><a href="#">Industry News <span class="category-count">5</span></a></li>
+                            <li><a href="#">Author Interviews <span class="category-count">4</span></a></li>
+                            <li><a href="#">Book Reviews <span class="category-count">3</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Newsletter</h3>
+                        <p>Subscribe to our newsletter for the latest publishing tips and industry insights.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Popular Tags</h3>
+                        <div class="tag-cloud">
+                            <a href="#">Writing</a>
+                            <a href="#">Publishing</a>
+                            <a href="#">Editing</a>
+                            <a href="#">Marketing</a>
+                            <a href="#">Book Design</a>
+                            <a href="#">Self-Publishing</a>
+                            <a href="#">Author Platform</a>
+                            <a href="#">E-books</a>
+                            <a href="#">Fiction</a>
+                            <a href="#">Non-Fiction</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Publish Your Book?</h2>
+            <p>Turn your manuscript into a professionally published book with Shepherd Court Publishing.</p>
+            <div class="cta-buttons">
+                <a href="submit.html" class="btn">Submit Your Manuscript</a>
+                <a href="services.html" class="btn btn-outline">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>Shepherd Court</h3>
+                    <p>Dedicated to publishing excellence since 2010, helping authors bring their vision to readers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="books.html">Books & Publications</a></li>
+                        <li><a href="services.html">Publishing Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="submit.html">Submit Manuscript</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#packages">Publishing Packages</a></li>
+                        <li><a href="services.html#editing">Editing & Proofreading</a></li>
+                        <li><a href="services.html#design">Cover Design</a></li>
+                        <li><a href="services.html#distribution">Distribution</a></li>
+                        <li><a href="services.html#isbn">ISBN Registration</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>123 Publishing Lane<br>
+                    Bookville, NY 10001<br>
+                    info@shepherdcourt.com<br>
+                    (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shepherd Court Publishing. All rights reserved Developed by Yubbie.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.getElementById('main-menu').classList.toggle('active');
+        });
+        
+        // Filter tags toggle
+        const filterTags = document.querySelectorAll('.filter-tag');
+        
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                filterTags.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the articles
+                // For demo purposes, we're just toggling the active class
+            });
+        });
+    </script>
+</body>
+</html>
